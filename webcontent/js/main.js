@@ -3,13 +3,18 @@ const request = 'http://localhost:8080';
 let username = null;
 let stompClient = null;
 
+document.getElementById('enter-form').addEventListener('submit', enterRoom);
+
 function enterRoom(event) {
     username = document.getElementById("username").value;
+
     fetch(request + "/enter", {
         method: 'POST', body: JSON.stringify({name: username}), headers: {
             'Content-Type': 'application/json'
         }
     }).then(r => connect(event, r)).catch(e => ErrorOccurred);
+
+    event.preventDefault();
 }
 
 function connect(event, response) {
@@ -24,7 +29,6 @@ function connect(event, response) {
             connected();
         }, ErrorOccurred);
     }
-    event.preventDefault();
 }
 
 function connected() {
@@ -48,17 +52,12 @@ function ErrorOccurred() {
 }
 
 function messageRender(message){
-    messageContainer.classList.add('message');
-    // messageContainer.style.float = 'right';
-
-    if (message.type === 'enter') {
-        document.getElementById('enter').classList.add('hidden');
-        document.getElementById('room').classList.remove('hidden');
-    }
 
     let room = document.getElementById('room');
-
     let messageContainer = document.createElement('li');
+
+    messageContainer.classList.add('message');
+    // messageContainer.style.float = 'right';
 
     let sender= document.createElement('p');
     sender.classList.add('sender');
@@ -75,6 +74,16 @@ function messageRender(message){
     content.appendChild(document.createTextNode(message.content));
     messageContainer.appendChild(content);
 
+    if (message.type === 'enter') {
+        document.getElementById('enter').classList.add('hidden');
+        room.classList.remove('hidden');
+        messageContainer.classList.add('system');
+        messageContainer.removeChild(sender)
+        messageContainer.removeChild(time)
+    }
+
     room.appendChild(messageContainer);
 }
+
+
 

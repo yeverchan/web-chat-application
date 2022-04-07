@@ -15,3 +15,8 @@
     display: block;
     clear: both;
 }
+
+#room .system {
+    color: red;
+    text-align: center;
+}
