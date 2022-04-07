@@ -1,29 +1,20 @@
 package com.yeverchan.webchatapplication.controller;
 
+import com.yeverchan.webchatapplication.model.User;
+import com.yeverchan.webchatapplication.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins={"http://localhost:63342"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://localhost:63342"}, allowCredentials = "true")
 public class UserController {
 
-    private Map<String, String> users = new ConcurrentHashMap<>();
-
-    @GetMapping("/enter")
-    public ResponseEntity<Void> enterChatRoom(@RequestParam String sender){
-        if(users.containsKey(sender)){
+    @PostMapping("/enter")
+    public ResponseEntity<Void> enterChatRoom(@RequestBody User user) {
+        if ((UserRepository.getInstance().getUsers().containsKey(user.getName()))) {
             return ResponseEntity.badRequest().build();
         }
-
-        users.put(sender, "getSessionId");
-
+        UserRepository.getInstance().getUsers().put(user.getName(), "");
         return ResponseEntity.ok().build();
     }
 }

@@ -1,0 +1,17 @@
+#enter{
+}
+#room{
+}
+
+.hidden{
+    display: none;
+}
+
+#room .message {
+    padding-left: 68px;
+    position: relative;
+    word-break: break-all;
+    float: left;
+    display: block;
+    clear: both;
+}
