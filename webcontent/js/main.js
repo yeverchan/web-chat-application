@@ -73,7 +73,6 @@ function ErrorOccurred() {
 
 function messageRender(message){
 
-    let room = document.getElementById('room');
     let messageContainer = document.createElement('li');
 
     messageContainer.classList.add('message');
@@ -95,18 +94,22 @@ function messageRender(message){
 
     if (message.type === 'enter') {
         document.getElementById('enter').classList.add('hidden');
-        room.classList.remove('hidden');
-        messageContainer.classList.add('system');
+        document.getElementById('room').classList.remove('hidden');
+        messageContainer.style.float = 'none';
+        messageContainer.style.textAlign = 'center';
+        content.classList.add('system');
+        content.classList.remove('content');
         messageContainer.removeChild(sender);
         messageContainer.removeChild(time);
     }
 
     if(message.uid === uid) {
         messageContainer.style.float = 'right';
+        content.style.backgroundColor= 'yellow';
         messageContainer.removeChild(sender);
     }
 
-    room.appendChild(messageContainer);
+    document.getElementById('chat').appendChild(messageContainer);
 }
 
 
