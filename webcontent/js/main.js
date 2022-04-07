@@ -4,6 +4,7 @@ let username = null;
 let stompClient = null;
 
 document.getElementById('enter-form').addEventListener('submit', enterRoom);
+document.getElementById('send-form').addEventListener('submit', send);
 
 function enterRoom(event) {
     username = document.getElementById("username").value;
@@ -45,6 +46,23 @@ function receiver(response) {
 
     messageRender(message);
 
+}
+
+function send(event){
+
+    let data = document.getElementById('message').value;
+
+    let messageTemplate = {
+        type: 'chat',
+        sender: username,
+        content: data
+    }
+
+    stompClient.send("/app/send", {}, JSON.stringify(messageTemplate));
+
+    document.getElementById('message').value = '';
+
+    event.preventDefault();
 }
 
 function ErrorOccurred() {

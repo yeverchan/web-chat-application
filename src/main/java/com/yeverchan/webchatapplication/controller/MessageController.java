@@ -18,7 +18,7 @@ public class MessageController {
 
 
     @MessageMapping("/connection")
-    public void message(@Payload Message message, SimpMessageHeaderAccessor headerAccessor) {
+    public void registration(@Payload Message message, SimpMessageHeaderAccessor headerAccessor) {
         String sessionId = headerAccessor.getSessionId();
 
         message.setUid(sessionId);
@@ -28,6 +28,14 @@ public class MessageController {
 
         message.setSender("system");
         message.setUid(null);
+
+        simpMessageSendingOperations.convertAndSend("/topic/public", message);
+    }
+
+    @MessageMapping("/send")
+    public void sendMessage(@Payload Message message){
+
+        message.setUid(UserRepository.getInstance().getUsers().get(message.getSender()));
 
         simpMessageSendingOperations.convertAndSend("/topic/public", message);
     }
