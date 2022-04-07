@@ -2,6 +2,7 @@ const request = 'http://localhost:8080';
 
 let username = null;
 let stompClient = null;
+let uid = null;
 
 document.getElementById('enter-form').addEventListener('submit', enterRoom);
 document.getElementById('send-form').addEventListener('submit', send);
@@ -27,6 +28,7 @@ function connect(event, response) {
         let socket = new SockJS(request + '/chat-room');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function () {
+            uid = /\/([^\/]+)\/websocket\/?$/.exec(socket._transport.url)[1];
             connected();
         }, ErrorOccurred);
     }
@@ -75,7 +77,6 @@ function messageRender(message){
     let messageContainer = document.createElement('li');
 
     messageContainer.classList.add('message');
-    // messageContainer.style.float = 'right';
 
     let sender= document.createElement('p');
     sender.classList.add('sender');
@@ -96,8 +97,13 @@ function messageRender(message){
         document.getElementById('enter').classList.add('hidden');
         room.classList.remove('hidden');
         messageContainer.classList.add('system');
-        messageContainer.removeChild(sender)
-        messageContainer.removeChild(time)
+        messageContainer.removeChild(sender);
+        messageContainer.removeChild(time);
+    }
+
+    if(message.uid === uid) {
+        messageContainer.style.float = 'right';
+        messageContainer.removeChild(sender);
     }
 
     room.appendChild(messageContainer);

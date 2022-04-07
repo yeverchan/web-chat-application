@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:63342"}, allowCredentials = "true")
+//@CrossOrigin(origins = {"http://localhost:63342"}, allowCredentials = "true")
 public class UserController {
 
     @PostMapping("/enter")
