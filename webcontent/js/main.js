@@ -6,7 +6,10 @@ let uid = null;
 
 document.getElementById('enter-form').addEventListener('submit', enterRoom);
 document.getElementById('send-form').addEventListener('submit', send);
-
+document.getElementById('message').addEventListener('keyup', test);
+function test(){
+    document.getElementById('send-btn').disabled = !document.getElementById('message').value;
+}
 
     function enterRoom(event) {
         username = document.getElementById("username").value;
