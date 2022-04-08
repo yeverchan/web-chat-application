@@ -29,7 +29,6 @@
     position: relative;
     word-break: break-all;
     float: left;
-    display: block;
     clear: both;
 }
 
@@ -50,13 +49,33 @@
     vertical-align: bottom;
     padding: 5px;
     font-size: 10px;
-    color: black;
+    color: #303030;
     display: block;
 }
 
+#chat .sender{
+    background-image: url("user.png");
+    background-size: cover;
+    border-radius: 30px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+}
+
 #chat li{
-    /*box-sizing: border-box;*/
     padding: 7px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: row-reverse;
+}
+
+.contentContainer p{
+    margin: 0;
+    font-size: 12px;
+    padding: 5px;
+    color: #303030;
 }
 
 .system {

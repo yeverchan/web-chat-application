@@ -77,20 +77,29 @@ function messageRender(message){
 
     messageContainer.classList.add('message');
 
-    let sender= document.createElement('p');
-    sender.classList.add('sender');
-    sender.appendChild(document.createTextNode(message.sender));
-    messageContainer.appendChild(sender);
-
     let time = document.createElement('span');
     time.classList.add('time');
     time.appendChild(document.createTextNode(new Date().toLocaleString('ko-KR', { hour: 'numeric', minute: 'numeric', hour12: true })));
     messageContainer.appendChild(time);
 
+    let contentContainer = document.createElement('div');
+    contentContainer.classList.add('contentContainer');
+
+    let senderName= document.createElement('p');
+    senderName.appendChild(document.createTextNode(message.sender));
+
     let content = document.createElement('span');
     content.classList.add('content');
     content.appendChild(document.createTextNode(message.content));
-    messageContainer.appendChild(content);
+
+    contentContainer.appendChild(senderName);
+    contentContainer.appendChild(content);
+    messageContainer.appendChild(contentContainer);
+
+    let sender= document.createElement('p');
+    sender.classList.add('sender');
+    // profile image
+    messageContainer.appendChild(sender);
 
     if (message.type === 'enter') {
         document.getElementById('enter').classList.add('hidden');
@@ -99,13 +108,16 @@ function messageRender(message){
         messageContainer.style.textAlign = 'center';
         content.classList.add('system');
         content.classList.remove('content');
+        contentContainer.removeChild(senderName);
         messageContainer.removeChild(sender);
         messageContainer.removeChild(time);
     }
 
     if(message.uid === uid) {
         messageContainer.style.float = 'right';
+        messageContainer.style.flexDirection = 'inherit';
         content.style.backgroundColor= 'yellow';
+        contentContainer.removeChild(senderName);
         messageContainer.removeChild(sender);
     }
 

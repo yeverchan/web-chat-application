@@ -24,7 +24,7 @@ public class MessageController {
         message.setUid(sessionId);
         UserRepository.getInstance().getUsers().put(message.getSender(), sessionId);
 
-        message.setContent(message.getSender() + "님이 입장하셨습니다.");
+        message.setContent(message.getSender() + "님이 들어왔습니다.");
 
         message.setSender("system");
         message.setUid(null);
