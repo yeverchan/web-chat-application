@@ -9,14 +9,13 @@ document.getElementById('send-form').addEventListener('submit', send);
 
 function enterRoom(event) {
     username = document.getElementById("username").value;
-
     fetch(request + "/enter", {
         method: 'POST', body: JSON.stringify({name: username}), headers: {
             'Content-Type': 'application/json'
         }
-    }).then(r => connect(event, r)).catch(e => ErrorOccurred);
-
+    }).then(r => connect(event, r,)).catch(e => ErrorOccurred);
     event.preventDefault();
+
 }
 
 function connect(event, response) {
@@ -47,6 +46,8 @@ function receiver(response) {
     let message = JSON.parse(response.body);
 
     messageRender(message);
+
+    document.getElementById("message").focus();
 
 }
 
@@ -122,7 +123,10 @@ function messageRender(message){
     }
 
     document.getElementById('chat').appendChild(messageContainer);
+    scrollToBottom('chat');
 }
 
-
-
+const scrollToBottom = (id) => {
+    const element = document.getElementById(id);
+    element.scrollTop = element.scrollHeight;
+}

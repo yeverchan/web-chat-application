@@ -11,7 +11,7 @@
 <body>
 <div id="enter">
     <form id="enter-form">
-        <input id="username" placeholder="이름을 입력해주세요." type="text"/>
+        <input id="username" placeholder="이름을 입력해주세요." type="text" autofocus/>
         <button type="submit">입장하기</button>
     </form>
 </div>
@@ -20,12 +20,12 @@
         <ul id="chat">
 
         </ul>
-    <div>
-        <form id="send-form">
-        <input type="text" id="message"/>
-            <button type="submit" >보내기</button>
-        </form>
-    </div>
+        <div id="input_area">
+            <form id="send-form">
+                <input type="text" id="message"/>
+                <button type="submit">보내기</button>
+            </form>
+        </div>
     </div>
 </div>
 <script src="js/main.js"></script>

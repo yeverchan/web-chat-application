@@ -3,13 +3,13 @@
 }
 
 
-#enter{
+#enter {
 }
 
-#room{
+#room {
 }
 
-#chat_area{
+#chat_area {
     position: relative;
     max-width: 400px;
     margin-left: auto;
@@ -18,11 +18,13 @@
 }
 
 #chat {
-    max-height: 400px;
+    height: 600px;
+    max-height: 600px;
     overflow: auto;
     overflow-y: scroll;
     background-color: steelblue;
     padding: 0;
+    margin: 0;
 }
 
 #chat_area .message {
@@ -32,7 +34,7 @@
     clear: both;
 }
 
-#chat .message .content{
+#chat .message .content {
     max-width: 200px;
     font-size: 15px;
     color: black;
@@ -44,7 +46,7 @@
     clear: both;
 }
 
-#chat .message .time{
+#chat .message .time {
     height: 20px;
     vertical-align: bottom;
     padding: 5px;
@@ -53,17 +55,17 @@
     display: block;
 }
 
-#chat .sender{
+#chat .sender {
     background-image: url("user.png");
     background-size: cover;
     border-radius: 30px;
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     margin-right: 5px;
 }
 
-#chat li{
+#chat li {
     padding: 7px;
     display: flex;
     align-items: flex-end;
@@ -71,7 +73,7 @@
     flex-direction: row-reverse;
 }
 
-.contentContainer p{
+.contentContainer p {
     margin: 0;
     font-size: 12px;
     padding: 5px;
@@ -86,6 +88,30 @@
     border-radius: 8px;
 }
 
-.hidden{
+.hidden {
     display: none;
+}
+
+#input_area {
+    background-color: blue;
+    height: 40px;
+}
+
+#input_area #send-form {
+    height: 100%;
+    text-align: left;
+}
+
+#input_area #send-form input {
+    height: 100%;
+    width: 80%;
+    border: 0;
+}
+
+#input_area #send-form button {
+    height: 100%;
+}
+
+input:focus {
+    outline: none;
 }

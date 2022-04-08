@@ -1,8 +1,6 @@
 package com.yeverchan.webchatapplication.repository;
 
 import lombok.ToString;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Repository;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
