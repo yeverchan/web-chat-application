@@ -10,6 +10,6 @@ import org.springframework.web.socket.WebSocketSession;
 @ToString
 public class User {
     private String name;
-//    private String sessionId;
+    private String sessionId;
 //    private WebSocketSession session;
 }

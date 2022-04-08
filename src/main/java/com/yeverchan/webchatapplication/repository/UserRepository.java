@@ -26,4 +26,13 @@ public class UserRepository {
     public Map<String, String> getUsers() {
         return users;
     }
+
+    public String getUserName(String sessionId) throws Exception {
+        for(String name: users.keySet()){
+            if(users.get(name).equals(sessionId)){
+                return name;
+            }
+        }
+        throw new Exception("찾을 수 없습니다.");
+    }
 }
