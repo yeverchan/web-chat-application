@@ -9,7 +9,7 @@ document.getElementById('send-form').addEventListener('submit', send);
 document.getElementById('message').addEventListener('keyup', block);
 
     function enterRoom(event) {
-        username = document.getElementById("username").value;
+        username = document.getElementById("username").value.trim();
         fetch(request + "/enter", {
             method: 'POST', body: JSON.stringify({name: username}), headers: {
                 'Content-Type': 'application/json'
@@ -54,7 +54,7 @@ document.getElementById('message').addEventListener('keyup', block);
 
     function send(event) {
 
-        let data = document.getElementById('message').value;
+        let data = document.getElementById('message').value.trim();
 
         let messageTemplate = {
             type: 'chat',
