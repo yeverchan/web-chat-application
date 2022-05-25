@@ -10,6 +10,8 @@
 
 <h3>Server</h3>
 Spring Security <br/>
+Spring Cloud Gateway<br/>
+Spring Cloud Feign<br/>
 RabbitMQ or Redis<br/>
 
 <h3>Front</h3>
